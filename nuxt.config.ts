@@ -1,15 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      title: "Time Up",
+      htmlAttrs: {
+        lang: "en",
+      },
+    },
+  },
+
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    '@nuxt/ui',
-    '@nuxt/fonts',
-    'vuetify-nuxt-module',
+    "@nuxt/eslint",
+    "@nuxt/image",
+    "@nuxt/scripts",
+    "@nuxt/ui",
+    "@nuxt/fonts",
+    "vuetify-nuxt-module",
   ],
 
   ssr: false,
@@ -21,12 +30,12 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
 
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
+      noExternal: ["vuetify"],
     },
   },
 
@@ -38,18 +47,18 @@ export default defineNuxtConfig({
       ssrClientHints: {
         reloadOnFirstRequest: false,
         viewportSize: false,
-        prefersColorScheme: false,
+        prefersColorScheme: true,
 
         prefersColorSchemeOptions: {
-          useBrowserThemeOnly: false,
+          useBrowserThemeOnly: true,
         },
       },
 
       // /* If customizing sass global variables ($utilities, $reset, $color-pack, $body-font-family, etc) */
       // disableVuetifyStyles: true,
       styles: {
-        configFile: 'assets/settings.scss',
+        configFile: "assets/settings.scss",
       },
     },
   },
-})
+});

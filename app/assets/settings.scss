@@ -8,3 +8,9 @@
 // @use 'vuetify/settings' with (
 //   $color-pack: false
 // );
+
+.v-application {
+  &.v-theme--light {
+    background: rgb(248, 248, 248);
+  }
+}
