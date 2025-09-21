@@ -12,6 +12,9 @@ const countdown = ref({
   minutes: 0,
   seconds: 0,
   progress: 0,
+  secondsPercentage: 0,
+  minutesPercentage: 0,
+  hoursPercentage: 0,
 });
 const timer = ref();
 const startingTime = ref("");
@@ -42,7 +45,16 @@ const timerFunc = () => {
   if (days) {
     progress = hoursPercentage;
   }
-  countdown.value = { days, hours, minutes, seconds, progress };
+  countdown.value = {
+    days,
+    hours,
+    minutes,
+    seconds,
+    progress,
+    secondsPercentage,
+    minutesPercentage,
+    hoursPercentage,
+  };
 };
 
 const tmpGetLocalStorage = () => {
@@ -105,38 +117,62 @@ onBeforeUnmount(() => {
       </v-card>
       <div class="d-flex justify-center align-center mt-8">
         <v-progress-circular
-          size="240"
-          :model-value="countdown.progress"
-          color="primary"
+          size="256"
+          :model-value="countdown.hoursPercentage"
+          color="warning"
         >
-          <template v-if="countdown.days">
-            <div class="d-flex flex-column ga-4 justify-center align-center">
-              <div class="text-h1 font-weight-black">{{ countdown.days }}</div>
-              <div>Days</div>
-            </div>
-          </template>
-          <template v-else-if="countdown.hours">
-            <div class="d-flex flex-column ga-4 justify-center align-center">
-              <div class="text-h1 font-weight-black">{{ countdown.hours }}</div>
-              <div>Hours</div>
-            </div>
-          </template>
-          <template v-else-if="countdown.minutes">
-            <div class="d-flex flex-column ga-4 justify-center align-center">
-              <div class="text-h1 font-weight-black">
-                {{ countdown.minutes }}
-              </div>
-              <div>Minutes</div>
-            </div>
-          </template>
-          <template v-else-if="countdown.seconds">
-            <div class="d-flex flex-column ga-4 justify-center align-center">
-              <div class="text-h1 font-weight-black">
-                {{ countdown.seconds }}
-              </div>
-              <div>Seconds</div>
-            </div>
-          </template>
+          <v-progress-circular
+            size="248"
+            :model-value="countdown.minutesPercentage"
+            color="error"
+          >
+            <v-progress-circular
+              size="240"
+              :model-value="countdown.secondsPercentage"
+              color="warning"
+            >
+              <template v-if="countdown.days">
+                <div
+                  class="d-flex flex-column ga-4 justify-center align-center"
+                >
+                  <div class="text-h1 font-weight-black">
+                    {{ countdown.days }}
+                  </div>
+                  <div>Days</div>
+                </div>
+              </template>
+              <template v-else-if="countdown.hours">
+                <div
+                  class="d-flex flex-column ga-4 justify-center align-center"
+                >
+                  <div class="text-h1 font-weight-black">
+                    {{ countdown.hours }}
+                  </div>
+                  <div>Hours</div>
+                </div>
+              </template>
+              <template v-else-if="countdown.minutes">
+                <div
+                  class="d-flex flex-column ga-4 justify-center align-center"
+                >
+                  <div class="text-h1 font-weight-black">
+                    {{ countdown.minutes }}
+                  </div>
+                  <div>Minutes</div>
+                </div>
+              </template>
+              <template v-else-if="countdown.seconds">
+                <div
+                  class="d-flex flex-column ga-4 justify-center align-center"
+                >
+                  <div class="text-h1 font-weight-black">
+                    {{ countdown.seconds }}
+                  </div>
+                  <div>Seconds</div>
+                </div>
+              </template>
+            </v-progress-circular>
+          </v-progress-circular>
         </v-progress-circular>
       </div>
     </template>
